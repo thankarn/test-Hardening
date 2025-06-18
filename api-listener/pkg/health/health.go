@@ -1,20 +1,18 @@
 package health
 
 import (
+	"fingw-listener-req/pkg/utils"
 	"fmt"
-	"go-stater-listener/pkg/env"
-	"go-stater-listener/pkg/utils"
 	"os"
 	"time"
 
-	bpLogCenter "gitlab.com/banpugroup/banpucoth/itsddev/library/golang/go-azure-sdk.git/log_center/logx"
-	bpLogCenterModel "gitlab.com/banpugroup/banpucoth/itsddev/library/golang/go-azure-sdk.git/log_center/model"
+	"gitlab.com/banpugroup/banpucoth/itsddev/library/golang/go-azure-sdk.git/appinsightsx"
 )
 
-func Health(logM bpLogCenter.LogCenter) {
-	f, err := os.Create(fmt.Sprintf("%s/health.txt", env.Env().TEMP_PATH))
+func Health(ai appinsightsx.Appinsightsx) {
+	f, err := os.Create(fmt.Sprintf("health.txt"))
 	if err != nil {
-		logM.Error(bpLogCenterModel.LoggerRequest{
+		ai.Error(appinsightsx.LoggerRequest{
 			Tags:    utils.TAGS_HEALTH_CHECK,
 			Process: utils.PROCESS_HEALTH_CHECK,
 			Error:   fmt.Sprintf("Error Health: %v", err),
@@ -26,7 +24,7 @@ func Health(logM bpLogCenter.LogCenter) {
 		fmt.Println("Health: ", time.Now().String())
 		_, err = f.WriteAt([]byte(time.Now().String()), 0)
 		if err != nil {
-			logM.Error(bpLogCenterModel.LoggerRequest{
+			ai.Error(appinsightsx.LoggerRequest{
 				Tags:    utils.TAGS_HEALTH_CHECK,
 				Process: utils.PROCESS_HEALTH_CHECK,
 				Error:   fmt.Sprintf("Error Health: %v", err),

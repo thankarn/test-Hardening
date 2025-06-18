@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"go-stater-listener/domain/model"
+	"fingw-listener-req/domain/model"
 	"runtime"
 )
 
