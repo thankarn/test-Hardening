@@ -1,0 +1,13 @@
+variables:
+  BPBUILD_BUILDER_IMAGE: golang:1.20.0-alpine3.17
+  BPBUILD_CERT_SECRET_NAME: banpu-co-th-tls
+  BPBUILD_COMPONENT: listener
+  BPBUILD_NAMESPACE: starter
+  BPBUILD_RUNNER_IMAGE: alpine:3.15
+  BPBUILD_SERVICE: go-starter-listener
+  BPBUILD_DOCKER_FILE_NAME: go
+  BPBUILD_REPOSITORY: go-starter-listener
+include:
+  - project: 'banpugroup/banpucom/build-pipeline/app-docker'
+    ref: release/4.0.1
+    file: 'pipeline.yml'
