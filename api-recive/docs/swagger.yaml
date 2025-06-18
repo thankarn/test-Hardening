@@ -1,0 +1,151 @@
+basePath: /starter-api/v2
+definitions:
+  model.CustomerInsertRequest:
+    properties:
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      phone:
+        type: string
+    required:
+    - firstName
+    - lastName
+    type: object
+  model.CustomerResponse:
+    properties:
+      data: {}
+      errors: {}
+      message:
+        type: string
+    type: object
+  model.UserprofileResponse:
+    properties:
+      data: {}
+      errors:
+        items: {}
+        type: array
+      message:
+        type: string
+    type: object
+  utils.ErrorDTO:
+    properties:
+      code:
+        type: integer
+      errors:
+        additionalProperties: true
+        type: object
+      message: {}
+    type: object
+host: api2-dv.banpu.co.th
+info:
+  contact: {}
+  description: This is a sample API with Bearer Auth
+  title: Go Starter API
+  version: "1.0"
+paths:
+  /customer:
+    get:
+      consumes:
+      - application/json
+      description: Get all customers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CustomerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorDTO'
+      security:
+      - BearerAuth: []
+      summary: Get all customers
+      tags:
+      - Customer
+    post:
+      consumes:
+      - application/json
+      description: Insert a new customer into the system
+      parameters:
+      - description: Customer Insert Request
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/model.CustomerInsertRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CustomerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorDTO'
+      security:
+      - BearerAuth: []
+      summary: Insert a new customer
+      tags:
+      - Customer
+  /health-check:
+    get:
+      consumes:
+      - application/json
+      description: Returns the health status of the application along with some environment
+        details.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Health Check
+      tags:
+      - Common
+  /user-profile/email/{email}:
+    get:
+      consumes:
+      - application/json
+      description: Get user email by email parameter
+      parameters:
+      - description: User Email
+        in: path
+        name: email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.UserprofileResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.ErrorDTO'
+      security:
+      - BearerAuth: []
+      summary: Get user email
+      tags:
+      - Userprofile
+schemes:
+- https
+securityDefinitions:
+  BearerAuth:
+    description: Bearer token (e.g., "Bearer <token>")
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
