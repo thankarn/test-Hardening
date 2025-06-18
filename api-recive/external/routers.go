@@ -2,7 +2,7 @@ package external
 
 import (
 	"fmt"
-	"go-starter-api/internal/customer"
+	customer "go-starter-api/internal/recive"
 	"go-starter-api/internal/userprofile"
 	"go-starter-api/pkg/env"
 

@@ -15,7 +15,7 @@ func Router(r fiber.Router, db *gorm.DB, ai appinsightsx.Appinsightsx, http_base
 	validate := utils.NewValidator()
 
 	userprofileApi := api.NewUserprofileApi(http_base, ai)
-	service := NewCustomerService(userprofileApi)
+	service := NewReciveService(userprofileApi)
 	handler := NewUserprofileHandler(service, validate, ai)
 
 	groupRoute := r.Group("/user-profile")

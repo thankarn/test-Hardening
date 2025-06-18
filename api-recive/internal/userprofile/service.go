@@ -13,7 +13,7 @@ type UserprofileService interface {
 	GetEmail(email string) (*model.UserprofileResponse, error)
 }
 
-func NewCustomerService(userprofileApi api.UserprofileApi) UserprofileService {
+func NewReciveService(userprofileApi api.UserprofileApi) UserprofileService {
 	return userprofileService{userprofileApi}
 }
 

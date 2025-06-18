@@ -23,8 +23,8 @@ type env struct {
 	DB_DATABASE string
 	DB_FEDAUTH  string
 
-	APP_INSIGHTS_KEY string
-	APP_INSIGHTS_ROLE string
+	APP_INSIGHTS_KEY               string
+	APP_INSIGHTS_ROLE              string
 	APP_INSIGHTS_SEND_LIVE_METRICS string
 
 	RedisHost string
@@ -45,6 +45,13 @@ type env struct {
 	USER_PROFILE_BASE_URL string
 
 	PATH_PREFIX string
+
+	SB_HOST                    string
+	SB_TOPIC                   string
+	SB_QUEUE                   string
+	SB_SUBSCRIPTION            string
+	SB_RECEIVER_TIMEOUT_IN_SEC string
+	SB_RECEIVER_BATCH_SIZE     string
 }
 
 // The single instance of env struct

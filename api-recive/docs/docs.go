@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/customer": {
+        "/recive": {
             "get": {
                 "security": [
                     {
@@ -72,7 +72,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.CustomerInsertRequest"
+                            "$ref": "#/definitions/model.ReciveInsertRequest"
                         }
                     }
                 ],
@@ -166,7 +166,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "model.CustomerInsertRequest": {
+        "model.ReciveInsertRequest": {
             "type": "object",
             "required": [
                 "firstName",
