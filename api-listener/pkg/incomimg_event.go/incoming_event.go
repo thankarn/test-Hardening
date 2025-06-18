@@ -49,7 +49,7 @@ type AppConfig struct {
 // Registered APIs with their configurations
 var (
 	API_OrderCreated = APIConfig{
-		EventType:   "OrderCreated",
+		EventType:   "CREATE_EVENT",
 		APIEndpoint: fmt.Sprintf("%s/%s", env.Env().FINGW_URL, "/orders/create"),
 		HTTPMethod:  "POST",
 		Headers: map[string]string{
